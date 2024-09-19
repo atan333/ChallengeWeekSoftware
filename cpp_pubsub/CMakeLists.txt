@@ -18,15 +18,20 @@ ament_target_dependencies(talker rclcpp std_msgs)
 add_executable(listener src/subscriber_member_function.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
   
-# !!! executable name listener to run subscriber node
+# !!! executable name pub to run subscriber node
 add_executable(pub src/basic_connection.cpp)
-ament_target_dependencies(listener rclcpp std_msgs)
+ament_target_dependencies(pub rclcpp std_msgs)
+
+# !!! executable name basic to run subscriber node
+add_executable(basic src/motors.cpp)
+ament_target_dependencies(basic rclcpp std_msgs)
 
 # !!! install part so ros can find executable
 install(TARGETS
   talker
   listener
   pub
+  basic
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
