@@ -50,17 +50,6 @@ inline MotorFunctions::MotorFunctions() {
     frame.data[5] = 0x00;
     frame.data[6] = 0x00;
     frame.data[7] = 0x00;
-
-    for (int i = 0; i < frame.len; i++)
-        printf("%02X ", frame.data[i]);
-
-    nbytes = write(s, &frame, sizeof(struct can_frame));
-
-    if(nbytes == -1) {
-        printf("Error: %s\n", strerror(errno));
-    }
-
-    printf("Wrote %d bytes\n", nbytes);
 };
 
 inline void MotorFunctions::stop() {
@@ -78,3 +67,19 @@ inline void MotorFunctions::stop() {
     nbytes = write(s, &frame, sizeof(struct can_frame));
     printf("Wrote %d bytes\n", nbytes);
 };
+
+inline void MotorFunctions::rotate() {
+    frame.can_id  = 0x140;
+    frame.can_dlc = 8;
+    frame.data[0] = 0xA2;
+    frame.data[1] = 0x00;
+    frame.data[2] = 0x00;
+    frame.data[3] = 0x00;
+    frame.data[4] = 0x10;
+    frame.data[5] = 0x27;
+    frame.data[6] = 0x00;
+    frame.data[7] = 0x00;
+
+    nbytes = write(s, &frame, sizeof(struct can_frame));
+    printf("Wrote %d bytes\n", nbytes);
+}
