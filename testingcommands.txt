@@ -21,3 +21,11 @@ cansend can0 141#a400f401a08c0000
 
 move back to 0
 cansend can0 141#a400f40100000000
+
+absolute position loop closed control
+cansend can0 141#a400f401a08c0000
+at a different angle:
+cansend can0 141#a400f401a0002300
+
+2.19 torque closed-loop control command
+cansend can0 141#a100000064000000
