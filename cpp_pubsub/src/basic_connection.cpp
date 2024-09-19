@@ -11,20 +11,6 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 
-class MotorFunctions {
-	public:
-		void singleTurn();
-};
-
-
-
-void MotorFunction::singleTurn(can_frame frame, int s, int nbytes) {
-
-	nbytes = write(s, &frame, sizeof(struct can_frame));
-
-	printf("Wrote %d bytes\n", nbytes);
-}
-
 int main(void)
 {
 	int s;
@@ -66,7 +52,9 @@ int main(void)
 	frame.data[6] = 0x77;
 	frame.data[7] = 0x88;
 
-	singleTurn(frame, s, nbytes);
+	nbytes = write(s, &frame, sizeof(struct can_frame));
+
+	printf("Wrote %d bytes\n", nbytes);
 	
 	return 0;
 };
