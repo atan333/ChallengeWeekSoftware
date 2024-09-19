@@ -29,8 +29,10 @@ public:
   MinimalPublisher()
   : Node("minimal_publisher"), count_(0)
   {
+    // ("topic", 10) = (topic name, required queue size)
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
     timer_ = this->create_wall_timer(
+      // causes to be called twice a second
       500ms, std::bind(&MinimalPublisher::timer_callback, this));
   }
 
